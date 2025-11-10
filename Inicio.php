@@ -10,8 +10,24 @@
 </head>
 <body>
     <div class="card">
-        <h2 style='color:orange; text-align:center;'> enhorabuena has sido seleccionado, bienvenido a tu nuevo trabajo </h2>
-        <p style='text-align:center;'>eres el vigilante de seguridad de una pizzeria abandonada, tu turno termina a las 6 am, Buena suerte. </p>
+        <h2 style='color:black; text-align:center;'> ¡Enhorabuena! Has sido seleccionado, bienvenido a tu nuevo trabajo.</h2>
     </div>
+
+    <div class="card" id='card2'>
+        <h3 style='color:orange; text-align:center'>Historia...</h3>
+        <p style='color:white; text-align:center;'>Eres el vigilante de seguridad de una pizzeria abandonada, tu turno termina a las 6 am, Buena suerte.</p>
+    </div>
+
+    <div class="card" id='card3'>
+  <h2 style='color:white; text-align:center'>Niveles</h2>
+  
+  <div class="niveles">
+    <div class="card" id='nivel1'><p>Nivel 1</p></div>
+    <div class="card" id='nivel2'><p>Nivel 2</p></div>
+    <div class="card" id='nivel3'><p>Nivel 3</p></div>
+  </div>
+</div>
+
+    
 </body>
 </html>

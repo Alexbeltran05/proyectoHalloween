@@ -3,14 +3,47 @@ body{
     background-size:100%;
 }
 
-.card{
-    background-color: rgba(255, 131, 16, 0.815);
-    border-radius: 15px;
-    box-shadow: 0 0 15px orange;
-    width: 300px;
-    padding: 20px;
-    margin: 20px;
-    text-align: center;
-    color: #f39c12;
-    transition: transform 0.3s, box-shadow 0.3s;
+.card {
+  background-color: #b62626 !important; 
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+#card2 {
+  background-color: #831818 !important; 
+  margin: 3px;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+#card3 {
+  background-color: #da46465d !important; 
+  margin: 3px;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+#nivel1, #nivel2, #nivel3 {
+  background-color: #222; 
+  color: white;
+  padding: 70px;
+  width: 15%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.niveles {
+  display: flex;                /* pone los niveles en fila */
+  justify-content: center;      /* centra horizontalmente */
+  align-items: center;          /* centra verticalmente */
+  gap: 5px;                    /* espacio entre niveles */
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
