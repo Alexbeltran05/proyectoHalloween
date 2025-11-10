@@ -1,0 +1,16 @@
+body{
+    background: url("imagenes/fondoInicio.png")no-repeat center center fixed;
+    background-size:100%;
+}
+
+.card{
+    background-color: rgba(255, 131, 16, 0.815);
+    border-radius: 15px;
+    box-shadow: 0 0 15px orange;
+    width: 300px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    color: #f39c12;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
