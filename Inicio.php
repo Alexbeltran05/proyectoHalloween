@@ -22,11 +22,21 @@
   <h2 style='color:white; text-align:center'>Niveles</h2>
   
   <div class="niveles">
-    <div class="card" id='nivel1'><p>Nivel 1</p></div>
+    <div class="card" id='nivel1'><p>Nivel 1
+    <button id="btnNivel1">Jugar</button>
+
+    </p></div>
     <div class="card" id='nivel2'><p>Nivel 2</p></div>
     <div class="card" id='nivel3'><p>Nivel 3</p></div>
   </div>
 </div>
+<script>
+  const btnNv1 = document.getElementById("btnNivel1")
+
+  btnNv1.onclick = () => window.location.href = 'nivel1.php';
+
+
+</script>
 
     
 </body>
