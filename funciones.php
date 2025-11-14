@@ -2,7 +2,6 @@
 session_start();
 
 function iniciarSesion($usuario, $clave) {
-    // Usuario y clave de ejemplo
     $usuarioCorrecto = "admin";
     $claveCorrecta   = "1234";
 

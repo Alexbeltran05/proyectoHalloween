@@ -47,11 +47,16 @@ background-color: #0000009c;
   background: url(imagenes/fondoNivel1.png);
   background-size: 100%;
 }
+#btnNivel1, #btnNivel2, #btnNivel3{
+  background-color: red;
+  align-items:end;
+}
 
 #nivel2{
   background: url(imagenes/fondoNivel2.jpg);
   background-size: 100%;
 }
+
 
 #nivel3{
   background: url(imagenes/fondoNivel3.png);
@@ -70,7 +75,23 @@ background-color: #0000009c;
 
 #contenidoFooter{
   text-align: center;
-  color: coral;
+  color: rgba(114, 114, 114, 0.884);
   margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.container{
+  color: rgba(114, 114, 114, 0.884);
+  display: block;
+  align-content: center;
+  max-width: 20%;
+}
+
+#programadores{
+  color: #a3a3a388;
+  display: block;
+  align-content: center;
+  max-width: 20%;
+  margin-left: 46%;
   margin-bottom: 5%;
 }

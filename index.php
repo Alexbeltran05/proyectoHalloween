@@ -9,6 +9,7 @@
 <body>
     <div class="login">
         <h1>Inicia sesión... si te atreves</h1>
+        <p>usuario: admin contraseña:1234</p>
         <form action="login.php" method="POST" id="login">
             <input type="text" name="usuario" placeholder="usuario" >
             <input type="password" name="clave" placeholder="contraseña" >

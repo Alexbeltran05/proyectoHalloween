@@ -30,21 +30,29 @@ protegerPagina();
   <h2 style='color:coral; text-align:center'>Niveles</h2>
   
   <div class="niveles">
-    <div class="card" id='nivel1'>
-    <h1>Nivel 1</h1>
-    <button id="btnNivel1">Jugar</button>
-  </div>
-    <div class="card" id='nivel2'><p>Nivel 2</p></div>
-    <div class="card" id='nivel3'><p>Nivel 3</p></div>
+    <div class="card" id='nivel1'><h1>Nivel 1 - FNAF 1</h1><button id="btnNivel1">Jugar</button></div>
+    <div class="card" id='nivel2'><h1>Nivel 2 - FNAF Sister Location</h1><button id="btnNivel2">Jugar</button></div>
+    <div class="card" id='nivel3'><h1>Nivel 3 - Modo Pesadilla</h1><button id="btnNivel3">Jugar</button></div>
   </div>
 </div>
 <footer class="card" id="footer">
-  <h2 id="contenidoFooter">Footer</h2>
+  <div id="contenidoFooter">Designed by - @BeltranProgramming SL.</div>
+  <container id="programadores">
+    <h5>Programadores:</h5>
+    <p>- Alex Beltrán Morales</p>
+    <p>- Lola Ávila Ros</p>
+    <p>- Jesus Ortega Torres</p>
+  </container>
+
 </footer>
 <script>
-  const btnNv1 = document.getElementById("btnNivel1")
+  const btnNv1 = document.getElementById("btnNivel1"),
+    btnNv2 = document.getElementById("btnNivel2"),
+    btnNv3 = document.getElementById("btnNivel3");
 
   btnNv1.onclick = () => window.location.href = 'nivel1.php';
+  btnNv2.onclick = () => window.location.href = 'nivel2.php';
+  btnNv3.onclick = () => window.location.href = 'nivel3.php';
 
 
 </script>
