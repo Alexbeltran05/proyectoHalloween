@@ -1,5 +1,6 @@
 <?php
 
+
 $imagenes = [
     ['id' => 'Bonnie', 'image' => 'Bonnie.png'],
     ['id' => 'Chica', 'image' => 'Chica.png'],
@@ -8,6 +9,7 @@ $imagenes = [
     ['id' => 'endo', 'image' => 'endo.png'],
     ['id' => 'Golden_Freddy', 'image' => 'golden_freddy.png'],
 ];
+
 
 function generarCartas($num_cartas)
 {
@@ -26,6 +28,7 @@ function generarCartas($num_cartas)
     shuffle($cartas);
     return $cartas;
 }
+
 
 $horaActual = isset($_GET['hora']) ? intval($_GET['hora']) : 1;
 if ($horaActual < 1) $horaActual = 1;
@@ -120,21 +123,91 @@ object-fit: cover;
 z-index: 2000;
 display:none;
 }
+#startOverlay{
+    position: fixed;
+    inset: 0;
+    background: #000;
+    color: #7dd6ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 3000;
+    opacity: 1;
+    transition: opacity .6s ease-out;
+    font-family: 'Courier New', monospace;
+}
+#startOverlay.oculto{
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+
+
+.glitch{
+    position: relative;
+    display: inline-block;
+    animation: glitch 2s infinite steps(1,end);
+    filter: drop-shadow(0 0 20px #00d9ff);
+}
+@keyframes glitch{
+    0%   { transform: translate(0); }
+    20%  { transform: translate(-2px, 2px); }
+    40%  { transform: translate(2px, -2px); }
+    60%  { transform: translate(-1px, 1px); }
+    80%  { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+
+
+
+.blink{
+    animation: blink 1.8s infinite;
+}
+@keyframes blink{
+    0%, 100%{ opacity: 1; }
+    50%      { opacity: .2; }
+}
 </style>
 </head>
 <body>
+<?php if ($horaActual == 1): ?>
+
+
+<div id="startOverlay">
+   
+    <img src="imagenes/logo.png" style="width:320px; margin-bottom:40px;">
+
+
+    <button id="startNight" class="btn btn-primary btn-lg mb-3" style="width:240px;">
+        Empezar la Noche
+    </button>
+
+
+    <button id="goMenu" class="btn btn-secondary btn-lg" style="width:240px;">
+        Volver al menú
+    </button>
+
+
+</div>
+<?php endif; ?>
+
 
 <audio id="audioHora" src="sonidos/reloj.mp3" preload="auto"></audio>
 <audio id="audioVictoria" src="sonidos/victoria.mp3" preload="auto"></audio>
 <audio id="audioFondo" src="sonidos/cancion.mp3" preload="auto"></audio>
 
+
 <div id="interfaz" class="container mt-4">
-    <h1>Five Nights at Freddy's - Noche 1</h1>
+    <h1>Five Nights at Freddy's 1</h1>
     <div id="info" class="mb-3">
         <div>Hora: <span id="hora"><?php echo $horaActual; ?></span> AM</div>
         <div>Movimientos restantes: <span id="movs"><?php echo $movimientosMax; ?></span></div>
         <div>Pares encontrados: <span id="pares">0</span> / <?php echo $totalPares; ?></div>
     </div>
+
 
     <div class="tablero">
         <?php foreach ($cartas as $index => $carta): ?>
@@ -147,6 +220,7 @@ display:none;
         <?php endforeach; ?>
     </div>
 
+
     <div id="overlayHora" class="overlay-pantalla"><h1 id="textoHora"></h1></div>
     <div id="gameOver" class="overlay-pantalla text-center">
         <h2>¡GAME OVER!</h2>
@@ -158,34 +232,57 @@ display:none;
     </div>
 </div>
 
+
 <video id="jumpscare" class="jumpscare"></video>
+
 
 <script>
 const $imagenes = <?php echo json_encode($imagenes); ?>;
 </script>
 
+
 <script>
+
+
 const cartas=document.querySelectorAll('.carta'),
-      movsDisplay=document.getElementById('movs'),
-      horaDisplay=document.getElementById('hora'),
-      paresDisplay=document.getElementById('pares'),
-      overlayHora=document.getElementById('overlayHora'),
-      textoHora=document.getElementById('textoHora'),
-      gameOverScreen=document.getElementById('gameOver'),
-      nocheCompletada=document.getElementById('nocheCompletada'),
-      jumpscare=document.getElementById('jumpscare'),
-      audioHora=document.getElementById('audioHora'),
-      audioVictoria=document.getElementById('audioVictoria'),
-      audioFondo=document.getElementById('audioFondo'),
-      reiniciarBtn=document.getElementById('reiniciar'),
-      menuBtn=document.getElementById('menuInicio');
+    startNight =document.getElementById('startNight'),
+    movsDisplay=document.getElementById('movs'),
+    horaDisplay=document.getElementById('hora'),
+    paresDisplay=document.getElementById('pares'),
+    overlayHora=document.getElementById('overlayHora'),
+    textoHora=document.getElementById('textoHora'),
+    gameOverScreen=document.getElementById('gameOver'),
+    nocheCompletada=document.getElementById('nocheCompletada'),
+    jumpscare=document.getElementById('jumpscare'),
+    audioHora=document.getElementById('audioHora'),
+    audioVictoria=document.getElementById('audioVictoria'),
+    audioFondo=document.getElementById('audioFondo'),
+    reiniciarBtn=document.getElementById('reiniciar'),
+    menuBtn=document.getElementById('menuInicio');
 const totalPares=<?php echo intval($totalPares); ?>,
-      horaActual=<?php echo $horaActual; ?>;
+    horaActual=<?php echo $horaActual; ?>;
+
+
+audioFondo.play();
+
+
+if (startNight) {
+    startNight.onclick = () => {
+        audioFondo.currentTime = 0;
+        audioFondo.play();
+        startOverlay.style.opacity = "0";
+        setTimeout(() => {
+            startOverlay.style.display = "none";
+        }, 500);
+    };
+}
+
 
 let cartasVolteadas=[],
     paresEncontrados=0,
     movimientos=<?php echo $movimientosMax; ?>,
     juegoActivo=true;
+
 
 const jumpscares={
     'Bonnie':'videos/jumpscare_bonnie.mp4',
@@ -195,7 +292,8 @@ const jumpscares={
     'endo':'videos/jumpscare_endo.mp4',
     'Golden_Freddy':'videos/jumpscare_goldenfreddy.mp4'
 };
-audioFondo.play();
+
+
 function gameOver(anim){
     audioFondo.pause();
     juegoActivo=false;
@@ -215,6 +313,7 @@ function gameOver(anim){
     },4000);
 }
 function mostrarCambioHora(nuevaHora){
+    audioFondo.pause();
     juegoActivo=false;
     textoHora.textContent=nuevaHora+' AM';
     overlayHora.classList.add('activo');
@@ -230,8 +329,8 @@ function mostrarFinal(){
     audioVictoria.play();
     nocheCompletada.classList.add('activo');
 }
-function actualizarMovimientos(delta){
-    movimientos+=delta;
+function actualizarMovimientos(movs){
+    movimientos+=movs;
     if(movimientos<0)movimientos=0;
     movsDisplay.textContent=movimientos;
     if(movimientos===0&&juegoActivo){
@@ -242,6 +341,7 @@ function actualizarMovimientos(delta){
 function actualizarPares(){
     paresDisplay.textContent=paresEncontrados;
 }
+
 
 cartas.forEach(carta=>{
     carta.addEventListener('click',()=>{
@@ -273,6 +373,7 @@ cartas.forEach(carta=>{
         }
     });
 });
+
 
 reiniciarBtn.onclick=()=>location.reload();
 menuBtn.onclick=()=>window.location.href='inicio.php';
